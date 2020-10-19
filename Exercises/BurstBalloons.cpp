@@ -3,7 +3,7 @@
 //
 
 #include "header.h"
-
+#include "catch.hpp"
 /*
 Given n balloons, indexed from 0 to n-1. Each balloon is painted with a number on it represented by array nums. You are asked to burst all the balloons. If the you burst balloon i you will get nums[left] * nums[i] * nums[right] coins. Here left and right are adjacent indices of i. After the burst, the left and right then becomes adjacent.
 
@@ -89,3 +89,7 @@ int maxCoins(vector<int>& nums) {
     return dp(nums);
 }
 
+TEST_CASE( "LeetCode.312", "[Burst Balloons]" ) {
+    vector<int> test = {3, 1, 5, 4, 6, 2, 7};
+    REQUIRE( maxCoins(test) == 562 );
+}

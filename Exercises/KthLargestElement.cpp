@@ -2,7 +2,7 @@
 // Created by zhaohonghua on 10/17/20.
 //
 #include "header.h"
-
+#include "catch.hpp"
 /*
 Find the kth largest element in an unsorted array.
  Note that it is the kth largest element in the sorted order, not the kth distinct element.
@@ -53,4 +53,12 @@ int findKthLargestHelper(vector<int>& nums, int start, int end, int k) {
 
 int findKthLargest(vector<int>& nums, int k) {
     return findKthLargestHelper(nums, 0, nums.size()-1, k);
+}
+
+TEST_CASE( "LeetCode.215", "[Kth Largest Element]" ) {
+    vector<int> test = {3, 1, 5, 4, 6, 2, 7};
+    REQUIRE( findKthLargest(test, 1) == 7 );
+    REQUIRE( findKthLargest(test, 2) == 6 );
+    REQUIRE( findKthLargest(test, 3) == 5 );
+    REQUIRE( findKthLargest(test, 4) == 4 );
 }
