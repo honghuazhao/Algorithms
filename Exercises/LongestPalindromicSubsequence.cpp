@@ -19,13 +19,27 @@ int helper(string& s, int start, int end, vector<vector<int>>& memo) {
     return ans;
 }
 
-int intuitive(string& s) {
+int topToBottom(string& s) {
     vector<vector<int>> memo(s.length(), vector<int>(s.length(), 0));
     return helper(s, 0, s.length()-1, memo);
 }
 
+int bottomToTop(string& s) {
+    vector<vector<int>> dp(s.length()+1, vector<int>(s.length(), 0));
+    for(int i = 0; i < s.length(); i++)
+        dp[1][i] = 1;
+    for(int len = 2; len <= s.length(); len++){
+        for(int i = 0; i < s.length()-len+1; i++) {
+            dp[len][i] = s[i] == s[i+len-1]? dp[len-2][i+1]+2 :
+                    max(dp[len-1][i], dp[len-1][i+1]);
+        }
+    }
+    return dp[s.length()][0];
+}
+
 int longestPalindromeSubseq(string s) {
-    return intuitive(s);
+    if(s == "") return 0;
+    return bottomToTop(s);
 }
 
 
