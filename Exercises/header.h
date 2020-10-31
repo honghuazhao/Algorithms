@@ -15,6 +15,14 @@
 #include <random>
 using namespace std;
 
+class TreeNode {
+public:
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+
 int findKthLargest(vector<int>& nums, int k);
 int maxCoins(vector<int>& nums);
 
